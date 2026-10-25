@@ -18,6 +18,17 @@ public class PizzaOrderBuilder {
         int pizzaCount = Integer.parseInt(countText.trim());
         System.out.println("Pizzas: " + pizzaCount);
 
+        // The toppings, split at each comma
+        System.out.print("Toppings (separated by commas)? ");
+        String toppingsLine = scanner.nextLine().trim();
+        String[] toppings = toppingsLine.split(",");
+
+        // Check the values
+        System.out.println("Toppings: " + toppings.length);
+        for (int i = 0; i < toppings.length; i++) {
+            System.out.println("  " + (i + 1) + ". " + toppings[i].trim());
+        }
+
         scanner.close();                             // done reading: release the keyboard
 
     }
