@@ -26,6 +26,8 @@ public class PizzaOrderBuilder {
         // The toppings, split at each comma
         System.out.print("Toppings (separated by commas)? ");
         String toppingsLine = scanner.nextLine().trim();
+        Pizza pizza = new Pizza(size, toppingsLine, price);
+
         String[] toppings = toppingsLine.split(",");
 
         // Check the values
