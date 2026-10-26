@@ -20,18 +20,9 @@ public class PizzaOrderBuilder {
         int pizzaCount = Integer.parseInt(countText.trim());
         System.out.println("Pizzas: " + pizzaCount);
 
-        // The size, in lower case so the switch can match it
-        System.out.print("Size (small/medium/large)? ");
-        String size = scanner.nextLine().trim().toLowerCase();
-        double price = getSizePrice(size);
+        // One pizza, asked for by its own method
+        Pizza pizza = askPizza(scanner);
 
-        // The toppings, split at each comma
-        System.out.print("Toppings (separated by commas)? ");
-        String toppingsLine = scanner.nextLine().trim();
-        Pizza pizza = new Pizza(size, toppingsLine, price);
-
-        String[] toppings = toppingsLine.split(",");
-        pizza.setPrice(pizza.getPrice() + toppings.length * 1.25);   // 1.25 per topping
 
         // Check the values
         // Read the pizza back through its getters
@@ -39,7 +30,6 @@ public class PizzaOrderBuilder {
         scanner.close();                             // done reading: release the keyboard
 
     }
-
     // Returns the price of one pizza of the given size
     public static double getSizePrice(String size) {
         double price;
@@ -50,6 +40,23 @@ public class PizzaOrderBuilder {
             default -> price = 0.00;
         }
         return price;
+    }
+
+    // Asks for the size and toppings of one pizza, and returns it
+    public static Pizza askPizza(Scanner scanner) {
+// The size, in lower case so the switch can match it
+        System.out.print("Size (small/medium/large)? ");
+        String size = scanner.nextLine().trim().toLowerCase();
+        double price = getSizePrice(size);
+
+        // The toppings, split at each comma
+        System.out.print("Toppings (separated by commas)? ");
+        String toppingsLine = scanner.nextLine().trim();
+        Pizza pizza = new Pizza(size, toppingsLine, price);
+        String[] toppings = toppingsLine.split(",");
+        pizza.setPrice(pizza.getPrice() + toppings.length * 1.25);   // 1.25 per topping
+
+        return pizza;
     }
 
 }
