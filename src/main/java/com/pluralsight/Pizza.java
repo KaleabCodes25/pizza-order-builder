@@ -13,6 +13,13 @@ public class Pizza {
         this.price = price;
     }
 
+    // A second constructor for a pizza with no toppings: size and price only
+    public Pizza(String size, double price) {
+        this.size = size;
+        this.toppings = "no toppings";
+        this.price = price;
+    }
+
     // Getters: read a field from outside the class
     public String getSize() {
         return this.size;

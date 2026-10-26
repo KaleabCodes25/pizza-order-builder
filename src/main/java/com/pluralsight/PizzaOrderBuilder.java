@@ -50,8 +50,11 @@ public class PizzaOrderBuilder {
         double price = getSizePrice(size);
 
         // The toppings, split at each comma
-        System.out.print("Toppings (separated by commas)? ");
+        System.out.print("Toppings (separated by commas, or none)? ");
         String toppingsLine = scanner.nextLine().trim();
+        if (toppingsLine.equalsIgnoreCase("none")) {
+            return new Pizza(size, price);               // the size-only constructor
+        }
         Pizza pizza = new Pizza(size, toppingsLine, price);
         String[] toppings = toppingsLine.split(",");
         pizza.setPrice(pizza.getPrice() + toppings.length * 1.25);   // 1.25 per topping
