@@ -1,3 +1,5 @@
+package com.pluralsight;
+
 import java.util.Scanner;
 
 public class PizzaOrderBuilder {
@@ -29,14 +31,11 @@ public class PizzaOrderBuilder {
         Pizza pizza = new Pizza(size, toppingsLine, price);
 
         String[] toppings = toppingsLine.split(",");
+        pizza.setPrice(pizza.getPrice() + toppings.length * 1.25);   // 1.25 per topping
 
         // Check the values
-        System.out.println("Toppings: " + toppings.length);
-        for (int i = 0; i < toppings.length; i++) {
-            System.out.println("  " + (i + 1) + ". " + toppings[i].trim());
-        }
-        System.out.printf("Price: $%.2f%n", price);
-
+        // Read the pizza back through its getters
+        System.out.printf("Pizza: %s, %s, $%.2f%n", pizza.getSize(), pizza.getToppings(), pizza.getPrice());
         scanner.close();                             // done reading: release the keyboard
 
     }

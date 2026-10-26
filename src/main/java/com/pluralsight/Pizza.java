@@ -12,4 +12,30 @@ public class Pizza {
         this.toppings = toppings;
         this.price = price;
     }
+
+    // Getters: read a field from outside the class
+    public String getSize() {
+        return this.size;
+    }
+
+    public String getToppings() {
+        return this.toppings;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    // Setters: change a field from outside the class
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setToppings(String toppings) {
+        this.toppings = toppings;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }
