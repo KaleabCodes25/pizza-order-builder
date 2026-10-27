@@ -12,6 +12,10 @@ public class PizzaOrderBuilder {
         System.out.print("What is your name? ");
         String nameInput = scanner.nextLine();
         String customerName = nameInput.trim().toUpperCase();
+        while (customerName.length() == 0) {
+            System.out.print("Please type a name: ");
+            customerName = scanner.nextLine().trim().toUpperCase();
+        }
         System.out.println("Hello, " + customerName + "!");
 
         // Read the count as text, then turn the text into a number
