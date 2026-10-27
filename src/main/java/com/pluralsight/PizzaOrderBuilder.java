@@ -25,22 +25,8 @@ public class PizzaOrderBuilder {
             System.out.println("Pizza " + (i + 1) + ":");
             pizzas[i] = askPizza(scanner);
         }
-
-        // The receipt: one line per pizza, read back through the getters
-        System.out.println();
-        System.out.println("Receipt for " + customerName);
-        for (int i = 0; i < pizzas.length; i++) {
-            Pizza pizza = pizzas[i];
-            System.out.printf("Pizza %d: %s, %s, $%.2f%n", i + 1, pizza.getSize(), pizza.getToppings(), pizza.getPrice());
-        }
-
-        // Add up the prices: for-each visits every pizza in the array
-        double total = 0.00;
-        for (Pizza pizza : pizzas) {
-            total += pizza.getPrice();
-        }
-        System.out.printf("Total: $%.2f%n", total);
-
+        // The receipt and the total
+        printReceipt(customerName, pizzas);
 
         System.out.println("Kitchen ticket: " + buildTicket(customerName, pizzas));
     }
@@ -85,6 +71,24 @@ public class PizzaOrderBuilder {
         }
         ticket.insert(0, customerName);
         return ticket.toString().toUpperCase();
+    }
+
+    // Prints one line per pizza, then the total
+    public static void printReceipt(String customerName, Pizza[] pizzas) {
+        // The receipt: one line per pizza, read back through the getters
+        System.out.println();
+        System.out.println("Receipt for " + customerName);
+        for (int i = 0; i < pizzas.length; i++) {
+            Pizza pizza = pizzas[i];
+            System.out.printf("Pizza %d: %s, %s, $%.2f%n", i + 1, pizza.getSize(), pizza.getToppings(), pizza.getPrice());
+        }
+
+        // Add up the prices: for-each visits every pizza in the array
+        double total = 0.00;
+        for (Pizza pizza : pizzas) {
+            total += pizza.getPrice();
+        }
+        System.out.printf("Total: $%.2f%n", total);
     }
 
 }
