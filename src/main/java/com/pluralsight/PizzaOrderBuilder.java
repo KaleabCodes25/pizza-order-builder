@@ -18,17 +18,21 @@ public class PizzaOrderBuilder {
         System.out.print("How many pizzas? ");
         String countText = scanner.nextLine();
         int pizzaCount = Integer.parseInt(countText.trim());
-        System.out.println("Pizzas: " + pizzaCount);
 
-        // One pizza, asked for by its own method
-        Pizza pizza = askPizza(scanner);
+        // One slot per pizza, filled one at a time
+        Pizza[] pizzas = new Pizza[pizzaCount];
+        for (int i = 0; i < pizzas.length; i++) {
+            System.out.println("Pizza " + (i + 1) + ":");
+            pizzas[i] = askPizza(scanner);
+        }
 
-
-        // Check the values
-        // Read the pizza back through its getters
-        System.out.printf("Pizza: %s, %s, $%.2f%n", pizza.getSize(), pizza.getToppings(), pizza.getPrice());
-        scanner.close();                             // done reading: release the keyboard
-
+        // The receipt: one line per pizza, read back through the getters
+        System.out.println();
+        System.out.println("Receipt for " + customerName);
+        for (int i = 0; i < pizzas.length; i++) {
+            Pizza pizza = pizzas[i];
+            System.out.printf("Pizza %d: %s, %s, $%.2f%n", i + 1, pizza.getSize(), pizza.getToppings(), pizza.getPrice());
+        }
     }
     // Returns the price of one pizza of the given size
     public static double getSizePrice(String size) {
