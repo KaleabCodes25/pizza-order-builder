@@ -33,6 +33,13 @@ public class PizzaOrderBuilder {
             Pizza pizza = pizzas[i];
             System.out.printf("Pizza %d: %s, %s, $%.2f%n", i + 1, pizza.getSize(), pizza.getToppings(), pizza.getPrice());
         }
+
+        // Add up the prices: for-each visits every pizza in the array
+        double total = 0.00;
+        for (Pizza pizza : pizzas) {
+            total += pizza.getPrice();
+        }
+        System.out.printf("Total: $%.2f%n", total);
     }
     // Returns the price of one pizza of the given size
     public static double getSizePrice(String size) {
