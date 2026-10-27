@@ -41,14 +41,8 @@ public class PizzaOrderBuilder {
         }
         System.out.printf("Total: $%.2f%n", total);
 
-        // A short kitchen ticket: the name, then the first letter of each size
-        StringBuilder ticket = new StringBuilder();
-        for (Pizza pizza : pizzas) {
-            ticket.append("-");
-            ticket.append(pizza.getSize().charAt(0));
-        }
-        ticket.insert(0, customerName);
-        System.out.println("Kitchen ticket: " + ticket.toString().toUpperCase());
+
+        System.out.println("Kitchen ticket: " + buildTicket(customerName, pizzas));
     }
     // Returns the price of one pizza of the given size
     public static double getSizePrice(String size) {
@@ -80,6 +74,17 @@ public class PizzaOrderBuilder {
         pizza.setPrice(pizza.getPrice() + toppings.length * 1.25);   // 1.25 per topping
 
         return pizza;
+    }
+
+    // Builds the kitchen ticket, for example NADIA-L-M
+    public static String buildTicket(String customerName, Pizza[] pizzas) {
+        StringBuilder ticket = new StringBuilder();
+        for (Pizza pizza : pizzas) {
+            ticket.append("-");
+            ticket.append(pizza.getSize().charAt(0));
+        }
+        ticket.insert(0, customerName);
+        return ticket.toString().toUpperCase();
     }
 
 }
