@@ -7,33 +7,45 @@ public class PizzaOrderBuilder {
 
         // One Scanner reads everything the user types
         Scanner scanner = new Scanner(System.in);
+        // Take orders until the answer is not yes
+        String answer;
+        do {
+            // The customer name, cleaned up
+            System.out.print("What is your name? ");
+            String nameInput = scanner.nextLine();
+            String customerName = nameInput.trim().toUpperCase();
+            while (customerName.length() == 0) {
+                System.out.print("Please type a name: ");
+                customerName = scanner.nextLine().trim().toUpperCase();
+            }
 
-        // The customer name, cleaned up
-        System.out.print("What is your name? ");
-        String nameInput = scanner.nextLine();
-        String customerName = nameInput.trim().toUpperCase();
-        while (customerName.length() == 0) {
-            System.out.print("Please type a name: ");
-            customerName = scanner.nextLine().trim().toUpperCase();
-        }
-        System.out.println("Hello, " + customerName + "!");
+            System.out.println("Hello, " + customerName + "!");
 
-        // Read the count as text, then turn the text into a number
-        System.out.print("How many pizzas? ");
-        String countText = scanner.nextLine();
-        int pizzaCount = Integer.parseInt(countText.trim());
+            // Read the count as text, then turn the text into a number
+            System.out.print("How many pizzas? ");
+            String countText = scanner.nextLine();
+            int pizzaCount = Integer.parseInt(countText.trim());
 
-        // One slot per pizza, filled one at a time
-        Pizza[] pizzas = new Pizza[pizzaCount];
-        for (int i = 0; i < pizzas.length; i++) {
-            System.out.println("Pizza " + (i + 1) + ":");
-            pizzas[i] = askPizza(scanner);
-        }
-        // The receipt and the total
-        printReceipt(customerName, pizzas);
+            // One slot per pizza, filled one at a time
+            Pizza[] pizzas = new Pizza[pizzaCount];
+            for (int i = 0; i < pizzas.length; i++) {
+                System.out.println("Pizza " + (i + 1) + ":");
+                pizzas[i] = askPizza(scanner);
+            }
+            // The receipt and the total
+            printReceipt(customerName, pizzas);
 
-        System.out.println("Kitchen ticket: " + buildTicket(customerName, pizzas));
+            System.out.println("Kitchen ticket: " + buildTicket(customerName, pizzas));
+
+            // Ask before starting again
+            System.out.print("Another order (yes/no)? ");
+            answer = scanner.nextLine();
+        } while (answer.trim().equalsIgnoreCase("yes"));
+
+        System.out.println("Goodbye!");
     }
+
+
     // Returns the price of one pizza of the given size
     public static double getSizePrice(String size) {
         double price;
